@@ -183,8 +183,6 @@ class Planet:
 
     def distance(self, jd=None):
         if jd is None: jd = self.jd
-        # print(sweph.calc_ut(jd, self.id, sweph.FLG_SWIEPH))
-        # exit()
         distance = sweph.calc_ut(jd, self.id, sweph.FLG_SWIEPH)[0][1]
         return distance
 
@@ -218,9 +216,6 @@ class Planet:
 
     def angle(self, planet, jd=None):
         if jd is None: jd = self.jd
-        # print(self.longitude(jd))
-        # print(planet.longitude(jd))
-        # exit()
         return (self.longitude(jd)[0] - planet.longitude(jd)[0]) % 360
 
     def illumination(self, jd=None):
