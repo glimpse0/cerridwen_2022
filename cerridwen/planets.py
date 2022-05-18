@@ -46,11 +46,16 @@ class PlanetLongitude():
 
     @property
     def sign(self):
-        return signs[int(self.absolute_degrees / 30)]
+        # print(signs)
+        # print(self.absolute_degrees)
+        # print(signs[int(self.absolute_degrees[0] / 30)])
+        return signs[int(self.absolute_degrees[0] / 30)]
 
     @property
     def deg(self):
-        return self.absolute_degrees % 30.0
+        # print(self.absolute_degrees)
+        # print(self.absolute_degrees[0] % 30)
+        return self.absolute_degrees[0] % 30.0
 
     @property
     def min(self):
@@ -178,7 +183,9 @@ class Planet:
 
     def distance(self, jd=None):
         if jd is None: jd = self.jd
-        distance = sweph.calc_ut(jd, self.id, sweph.FLG_SWIEPH)[2]
+        # print(sweph.calc_ut(jd, self.id, sweph.FLG_SWIEPH))
+        # exit()
+        distance = sweph.calc_ut(jd, self.id, sweph.FLG_SWIEPH)[0][1]
         return distance
 
     def position(self, jd=None):
@@ -191,7 +198,7 @@ class Planet:
 
     def speed(self, jd=None):
         if jd is None: jd = self.jd
-        speed = sweph.calc_ut(jd, self.id)[3]
+        speed = sweph.calc_ut(jd, self.id)[0][3]
         return speed
 
     def max_speed(self):
@@ -211,7 +218,10 @@ class Planet:
 
     def angle(self, planet, jd=None):
         if jd is None: jd = self.jd
-        return (self.longitude(jd) - planet.longitude(jd)) % 360
+        # print(self.longitude(jd))
+        # print(planet.longitude(jd))
+        # exit()
+        return (self.longitude(jd)[0] - planet.longitude(jd)[0]) % 360
 
     def illumination(self, jd=None):
         # TODO also return an indicator of whether it is growing or shrinking.

@@ -53,7 +53,6 @@ def compute_sun_data(jd=None, observer=None):
 
     return result
 
-
 def compute_moon_data(jd=None, observer=None):
     """Collect data for the moon.
 
@@ -100,6 +99,272 @@ def compute_moon_data(jd=None, observer=None):
         result['last_set'] = moon.last_set()
 
     return result
+
+def compute_mercury_data(jd=None, observer=None):
+
+    """Collect data for mercury.
+
+     :param jd: reference date as Julian day, defaults to :func:`jd_now`
+     :type jd: float or None
+     :param observer: pass the observer position to have the output
+                      include rise and set times.
+     :type observer: LatLong or None
+     :returns: a collection of sun data
+     :rtype: OrderedDict
+     """
+    if jd is None: jd = jd_now()
+
+    result = collections.OrderedDict()
+
+    result['jd'] = jd
+    result['iso_date'] = jd2iso(jd)
+
+    mercury = Mercury(jd, observer)
+
+    result['position'] = mercury.position()
+
+    result['dignity'] = mercury.dignity()
+
+    if observer:
+        result['next_rise'] = mercury.next_rise()
+        result['next_set'] = mercury.next_set()
+        result['last_rise'] = mercury.last_rise()
+        result['last_set'] = mercury.last_set()
+
+    return result
+
+def compute_venus_data(jd=None, observer=None):
+
+    """Collect data for mercury.
+
+     :param jd: reference date as Julian day, defaults to :func:`jd_now`
+     :type jd: float or None
+     :param observer: pass the observer position to have the output
+                      include rise and set times.
+     :type observer: LatLong or None
+     :returns: a collection of sun data
+     :rtype: OrderedDict
+     """
+    if jd is None: jd = jd_now()
+
+    result = collections.OrderedDict()
+
+    result['jd'] = jd
+    result['iso_date'] = jd2iso(jd)
+
+    venus = Venus(jd, observer)
+
+    result['position'] = venus.position()
+
+    result['dignity'] = venus.dignity()
+
+    if observer:
+        result['next_rise'] = venus.next_rise()
+        result['next_set'] = venus.next_set()
+        result['last_rise'] = venus.last_rise()
+        result['last_set'] = venus.last_set()
+
+    return result
+
+def compute_mars_data(jd=None, observer=None):
+
+    """Collect data for mercury.
+
+     :param jd: reference date as Julian day, defaults to :func:`jd_now`
+     :type jd: float or None
+     :param observer: pass the observer position to have the output
+                      include rise and set times.
+     :type observer: LatLong or None
+     :returns: a collection of sun data
+     :rtype: OrderedDict
+     """
+    if jd is None: jd = jd_now()
+
+    result = collections.OrderedDict()
+
+    result['jd'] = jd
+    result['iso_date'] = jd2iso(jd)
+
+    mars = Mars(jd, observer)
+
+    result['position'] = mars.position()
+
+    result['dignity'] = mars.dignity()
+
+    if observer:
+        result['next_rise'] = mars.next_rise()
+        result['next_set'] = mars.next_set()
+        result['last_rise'] = mars.last_rise()
+        result['last_set'] = mars.last_set()
+
+    return result
+
+def compute_jupiter_data(jd=None, observer=None):
+
+    """Collect data for mercury.
+
+     :param jd: reference date as Julian day, defaults to :func:`jd_now`
+     :type jd: float or None
+     :param observer: pass the observer position to have the output
+                      include rise and set times.
+     :type observer: LatLong or None
+     :returns: a collection of sun data
+     :rtype: OrderedDict
+     """
+    if jd is None: jd = jd_now()
+
+    result = collections.OrderedDict()
+
+    result['jd'] = jd
+    result['iso_date'] = jd2iso(jd)
+
+    jupiter = Jupiter(jd, observer)
+
+    result['position'] = jupiter.position()
+
+    result['dignity'] = jupiter.dignity()
+
+    if observer:
+        result['next_rise'] = jupiter.next_rise()
+        result['next_set'] = jupiter.next_set()
+        result['last_rise'] = jupiter.last_rise()
+        result['last_set'] = jupiter.last_set()
+
+    return result
+
+def compute_saturn_data(jd=None, observer=None):
+
+    """Collect data for mercury.
+
+     :param jd: reference date as Julian day, defaults to :func:`jd_now`
+     :type jd: float or None
+     :param observer: pass the observer position to have the output
+                      include rise and set times.
+     :type observer: LatLong or None
+     :returns: a collection of sun data
+     :rtype: OrderedDict
+     """
+    if jd is None: jd = jd_now()
+
+    result = collections.OrderedDict()
+
+    result['jd'] = jd
+    result['iso_date'] = jd2iso(jd)
+
+    saturn = Saturn(jd, observer)
+
+    result['position'] = saturn.position()
+
+    result['dignity'] = saturn.dignity()
+
+    if observer:
+        result['next_rise'] = saturn.next_rise()
+        result['next_set'] = saturn.next_set()
+        result['last_rise'] = saturn.last_rise()
+        result['last_set'] = saturn.last_set()
+
+    return result
+
+def compute_uranus_data(jd=None, observer=None):
+
+    """Collect data for mercury.
+
+     :param jd: reference date as Julian day, defaults to :func:`jd_now`
+     :type jd: float or None
+     :param observer: pass the observer position to have the output
+                      include rise and set times.
+     :type observer: LatLong or None
+     :returns: a collection of sun data
+     :rtype: OrderedDict
+     """
+    if jd is None: jd = jd_now()
+
+    result = collections.OrderedDict()
+
+    result['jd'] = jd
+    result['iso_date'] = jd2iso(jd)
+
+    uranus = Uranus(jd, observer)
+
+    result['position'] = uranus.position()
+
+    # result['dignity'] = uranus.dignity()
+
+    if observer:
+        result['next_rise'] = uranus.next_rise()
+        result['next_set'] = uranus.next_set()
+        result['last_rise'] = uranus.last_rise()
+        result['last_set'] = uranus.last_set()
+
+    return result
+
+def compute_neptune_data(jd=None, observer=None):
+
+    """Collect data for mercury.
+
+     :param jd: reference date as Julian day, defaults to :func:`jd_now`
+     :type jd: float or None
+     :param observer: pass the observer position to have the output
+                      include rise and set times.
+     :type observer: LatLong or None
+     :returns: a collection of sun data
+     :rtype: OrderedDict
+     """
+    if jd is None: jd = jd_now()
+
+    result = collections.OrderedDict()
+
+    result['jd'] = jd
+    result['iso_date'] = jd2iso(jd)
+
+    neptune = Neptune(jd, observer)
+
+    result['position'] = neptune.position()
+
+    # result['dignity'] = uranus.dignity()
+
+    if observer:
+        result['next_rise'] = neptune.next_rise()
+        result['next_set'] = neptune.next_set()
+        result['last_rise'] = neptune.last_rise()
+        result['last_set'] = neptune.last_set()
+
+    return result
+
+def compute_pluto_data(jd=None, observer=None):
+
+    """Collect data for mercury.
+
+     :param jd: reference date as Julian day, defaults to :func:`jd_now`
+     :type jd: float or None
+     :param observer: pass the observer position to have the output
+                      include rise and set times.
+     :type observer: LatLong or None
+     :returns: a collection of sun data
+     :rtype: OrderedDict
+     """
+    if jd is None: jd = jd_now()
+
+    result = collections.OrderedDict()
+
+    result['jd'] = jd
+    result['iso_date'] = jd2iso(jd)
+
+    pluto = Pluto(jd, observer)
+
+    result['position'] = pluto.position()
+
+    # result['dignity'] = uranus.dignity()
+
+    if observer:
+        result['next_rise'] = pluto.next_rise()
+        result['next_set'] = pluto.next_set()
+        result['last_rise'] = pluto.last_rise()
+        result['last_set'] = pluto.last_set()
+
+    return result
+
+
 
 def get_events(jd_start, jd_end, limit=100, filter_fn=None):
     # TODO we only support AND of filters, not OR
