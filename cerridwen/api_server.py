@@ -125,6 +125,223 @@ def sun_endpoint():
 
     return make_response(result, 200)
 
+@app.route("/v1/mercury")
+def mercury_endpoint():
+    latlong = None
+    jd = cerridwen.jd_now()
+
+    try:
+        date = flask.request.args.get('date')
+        if date:
+            jd = cerridwen.parse_jd_or_iso_date(date)
+
+        lat = flask.request.args.get('latitude')
+        if lat:
+            lat = float(lat)
+        long = flask.request.args.get('longitude')
+        if long:
+            long = float(long)
+        if (long is None and lat is not None) or (lat is None and long is not None):
+            raise ValueError("Specify both longitude and latitude or none")
+        if lat and long:
+            latlong = cerridwen.LatLong(lat, long)
+    except ValueError as e:
+        return make_response(e, 400)
+
+    result = emit_json(cerridwen.compute_mercury_data(jd=jd, observer=latlong))
+
+    return make_response(result, 200)
+
+@app.route("/v1/venus")
+def venus_endpoint():
+    latlong = None
+    jd = cerridwen.jd_now()
+
+    try:
+        date = flask.request.args.get('date')
+        if date:
+            jd = cerridwen.parse_jd_or_iso_date(date)
+
+        lat = flask.request.args.get('latitude')
+        if lat:
+            lat = float(lat)
+        long = flask.request.args.get('longitude')
+        if long:
+            long = float(long)
+        if (long is None and lat is not None) or (lat is None and long is not None):
+            raise ValueError("Specify both longitude and latitude or none")
+        if lat and long:
+            latlong = cerridwen.LatLong(lat, long)
+    except ValueError as e:
+        return make_response(e, 400)
+
+    result = emit_json(cerridwen.compute_venus_data(jd=jd, observer=latlong))
+
+    return make_response(result, 200)
+
+@app.route("/v1/mars")
+def mars_endpoint():
+    latlong = None
+    jd = cerridwen.jd_now()
+
+    try:
+        date = flask.request.args.get('date')
+        if date:
+            jd = cerridwen.parse_jd_or_iso_date(date)
+
+        lat = flask.request.args.get('latitude')
+        if lat:
+            lat = float(lat)
+        long = flask.request.args.get('longitude')
+        if long:
+            long = float(long)
+        if (long is None and lat is not None) or (lat is None and long is not None):
+            raise ValueError("Specify both longitude and latitude or none")
+        if lat and long:
+            latlong = cerridwen.LatLong(lat, long)
+    except ValueError as e:
+        return make_response(e, 400)
+
+    result = emit_json(cerridwen.compute_mars_data(jd=jd, observer=latlong))
+
+    return make_response(result, 200)
+
+@app.route("/v1/jupiter")
+def jupiter_endpoint():
+    latlong = None
+    jd = cerridwen.jd_now()
+
+    try:
+        date = flask.request.args.get('date')
+        if date:
+            jd = cerridwen.parse_jd_or_iso_date(date)
+
+        lat = flask.request.args.get('latitude')
+        if lat:
+            lat = float(lat)
+        long = flask.request.args.get('longitude')
+        if long:
+            long = float(long)
+        if (long is None and lat is not None) or (lat is None and long is not None):
+            raise ValueError("Specify both longitude and latitude or none")
+        if lat and long:
+            latlong = cerridwen.LatLong(lat, long)
+    except ValueError as e:
+        return make_response(e, 400)
+
+    result = emit_json(cerridwen.compute_jupiter_data(jd=jd, observer=latlong))
+
+    return make_response(result, 200)
+
+@app.route("/v1/saturn")
+def saturn_endpoint():
+    latlong = None
+    jd = cerridwen.jd_now()
+
+    try:
+        date = flask.request.args.get('date')
+        if date:
+            jd = cerridwen.parse_jd_or_iso_date(date)
+
+        lat = flask.request.args.get('latitude')
+        if lat:
+            lat = float(lat)
+        long = flask.request.args.get('longitude')
+        if long:
+            long = float(long)
+        if (long is None and lat is not None) or (lat is None and long is not None):
+            raise ValueError("Specify both longitude and latitude or none")
+        if lat and long:
+            latlong = cerridwen.LatLong(lat, long)
+    except ValueError as e:
+        return make_response(e, 400)
+
+    result = emit_json(cerridwen.compute_saturn_data(jd=jd, observer=latlong))
+
+    return make_response(result, 200)
+
+@app.route("/v1/uranus")
+def uranus_endpoint():
+    latlong = None
+    jd = cerridwen.jd_now()
+
+    try:
+        date = flask.request.args.get('date')
+        if date:
+            jd = cerridwen.parse_jd_or_iso_date(date)
+
+        lat = flask.request.args.get('latitude')
+        if lat:
+            lat = float(lat)
+        long = flask.request.args.get('longitude')
+        if long:
+            long = float(long)
+        if (long is None and lat is not None) or (lat is None and long is not None):
+            raise ValueError("Specify both longitude and latitude or none")
+        if lat and long:
+            latlong = cerridwen.LatLong(lat, long)
+    except ValueError as e:
+        return make_response(e, 400)
+
+    result = emit_json(cerridwen.compute_uranus_data(jd=jd, observer=latlong))
+
+    return make_response(result, 200)
+
+@app.route("/v1/neptune")
+def neptune_endpoint():
+    latlong = None
+    jd = cerridwen.jd_now()
+
+    try:
+        date = flask.request.args.get('date')
+        if date:
+            jd = cerridwen.parse_jd_or_iso_date(date)
+
+        lat = flask.request.args.get('latitude')
+        if lat:
+            lat = float(lat)
+        long = flask.request.args.get('longitude')
+        if long:
+            long = float(long)
+        if (long is None and lat is not None) or (lat is None and long is not None):
+            raise ValueError("Specify both longitude and latitude or none")
+        if lat and long:
+            latlong = cerridwen.LatLong(lat, long)
+    except ValueError as e:
+        return make_response(e, 400)
+
+    result = emit_json(cerridwen.compute_neptune_data(jd=jd, observer=latlong))
+
+    return make_response(result, 200)
+
+@app.route("/v1/pluto")
+def pluto_endpoint():
+    latlong = None
+    jd = cerridwen.jd_now()
+
+    try:
+        date = flask.request.args.get('date')
+        if date:
+            jd = cerridwen.parse_jd_or_iso_date(date)
+
+        lat = flask.request.args.get('latitude')
+        if lat:
+            lat = float(lat)
+        long = flask.request.args.get('longitude')
+        if long:
+            long = float(long)
+        if (long is None and lat is not None) or (lat is None and long is not None):
+            raise ValueError("Specify both longitude and latitude or none")
+        if lat and long:
+            latlong = cerridwen.LatLong(lat, long)
+    except ValueError as e:
+        return make_response(e, 400)
+
+    result = emit_json(cerridwen.compute_pluto_data(jd=jd, observer=latlong))
+
+    return make_response(result, 200)
+
+
 # just a quick hack; we don't really want any major calculations in this module.
 @app.route("/v1/olivier")
 def olivier_endpoint():
