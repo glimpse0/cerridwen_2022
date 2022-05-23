@@ -16,5 +16,5 @@ pycparser==2.19
 #pyinotify==0.9.6
 pyOpenSSL==18.0.0
 pyswisseph==2.08.00-1
-six==1.10.0
+six>=1.10.0
 Werkzeug==2.1.2
