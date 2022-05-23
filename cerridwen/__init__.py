@@ -88,9 +88,9 @@ def compute_moon_data(jd=None, observer=None):
 
     result['next_new_moon'] = moon.next_new_moon()
     result['next_full_moon'] = moon.next_full_moon()
-    result['next_new_or_full_moon'] = moon.next_new_or_full_moon()
-    result['last_new_moon'] = moon.last_new_moon()
-    result['last_full_moon'] = moon.last_full_moon()
+    # result['next_new_or_full_moon'] = moon.next_new_or_full_moon()
+    # result['last_new_moon'] = moon.last_new_moon()
+    # result['last_full_moon'] = moon.last_full_moon()
 
     if observer:
         result['next_rise'] = moon.next_rise()

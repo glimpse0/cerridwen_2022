@@ -651,10 +651,15 @@ class Moon(Planet):
         return PlanetEvent('New moon in ' + self.sign(next_angle_jd), next_angle_jd)
 
     def next_full_moon(self, jd=None):
-        if jd is None: jd = self.jd
-        sun = Sun()
-        next_angle_jd, delta_jd, angle_diff = self.next_angle_to_planet(sun, 180, jd)
-        return PlanetEvent('Full moon in ' + self.sign(next_angle_jd), next_angle_jd)
+        try:
+            if jd is None: jd = self.jd
+            sun = Sun()
+            next_angle_jd, delta_jd, angle_diff = self.next_angle_to_planet(sun, 180, jd)
+            return PlanetEvent('Full moon in ' + self.sign(next_angle_jd), next_angle_jd)
+        except:
+            return "fail"
+
+
 
     def last_full_moon(self, jd=None):
         if jd is None: jd = self.jd

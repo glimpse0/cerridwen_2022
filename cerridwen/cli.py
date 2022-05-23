@@ -82,11 +82,25 @@ def emit_pluto_text(result):
     print('Pluto: %f / %d %s %d\' %d"' % (result['position'].absolute_degrees[0],
         deg, sign, min, sec))
 
-def emit_csv(result):
+def emit_csv(result, comma = True):
     sign, deg, min, sec = result['position'].rel_tuple
-    print('%f,%d,%s,%d\',%d",' % (result['position'].absolute_degrees[0],
-      deg, sign, min, sec), end="")
+    out = ('%f,%s,%d\',%d"' % (result['position'].absolute_degrees[0],
+      sign, min, sec))
+    if comma: out+=",";
+    return out
 
+def emit_csv_moon(result, comma = True):
+    sign, deg, min, sec = result['position'].rel_tuple
+    # trend+shape = phase
+    trend = result['phase'].trend
+    shape = result['phase'].shape
+    quarter = result['phase'].quarter_english
+    diameter = result["diameter"]
+    nextNewMoon = result["next_new_moon"]
+    nextFullMoon = result["next_full_moon"]
+    return('%f,%s,%d\',%d",%s,%s,%s,%f,%s,%s,'
+           % (result['position'].absolute_degrees[0],
+      sign, min, sec, trend, shape, quarter,diameter,nextNewMoon, nextFullMoon))
 
 def main():
     import argparse
@@ -120,35 +134,58 @@ def main():
     # emit_time_info(sun_data)
     # emit_sun_text(sun_data)
 
-    print("timestamp,", end="");
-    print("JD,", end="");
-    print("sun,", end="");
-    print("mercury,", end="");
-    print("venus,", end="");
-    print("mars,", end="");
-    print("jupiter,", end="");
-    print("saturn,", end="");
-    print("uranus,", end="");
-    print("neptune,", end="");
-    print("pluto,");
+
     # emit_csv(cerridwen.compute_moon_data(sun_data["jd"]), True)
 
-    for i in range(15):
-        JD = 2459722.0 + i
+    file = open("planets.csv", "a");
+    buffer = "JD,"
+    buffer += "timestamp,"
+    buffer += "sun,s_sign,s_min,s_sec,"
+    buffer += "moon," \
+              "moon_sign," \
+              "moon_min," \
+              "moon_sec," \
+              "moon_trend," \
+              "moon_shape," \
+              "moon_quarter," \
+              "moon_diameter," \
+              "moon_nextNewMoon," \
+              "moon_nextFullMoon,"
+    buffer += "mercury,m_sign,m_min,m_sec,"
+    buffer += "venus,v_sign,v_min,v_sec,"
+    buffer += "mars,ma_sign,ma_min,ma_sec,"
+    buffer += "jupiter,j_sign,j_min,j_sec,"
+    buffer += "saturn,sa_sign,sa_min,sa_sec,"
+    buffer += "uranus,ur_sign,ur_min,ur_sec,"
+    buffer += "neptune,ne_sign,ne_min,ne_sec,"
+    buffer += "pluto,p_sign,p_min,p_sec\n"
+
+    file.write(buffer)
+
+
+    # for i in range(365*5):
+    for i in range(365*2):
+        # JD = 2460487.10000001 + i
+        JD = 2460723.1 + i
         sun_data = cerridwen.compute_sun_data(JD)
         # loop
-        print(sun_data["jd"],end="")
-        print(sun_data["iso_date"],end="")
-        emit_csv(sun_data)
-        emit_csv(cerridwen.compute_mercury_data(sun_data["jd"]))
-        emit_csv(cerridwen.compute_venus_data(sun_data["jd"]))
-        emit_csv(cerridwen.compute_mars_data(sun_data["jd"]))
-        emit_csv(cerridwen.compute_jupiter_data(sun_data["jd"]))
-        emit_csv(cerridwen.compute_saturn_data(sun_data["jd"]))
-        emit_csv(cerridwen.compute_uranus_data(sun_data["jd"]))
-        emit_csv(cerridwen.compute_neptune_data(sun_data["jd"]))
-        emit_csv(cerridwen.compute_pluto_data(sun_data["jd"]))
-        print()
+        buffer = "";
+        buffer += str(sun_data["jd"]) + ","
+        buffer += str(sun_data["iso_date"]) + ","
+        buffer += emit_csv(sun_data)
+        print(emit_csv_moon(cerridwen.compute_moon_data(sun_data["jd"])))
+        buffer += emit_csv_moon(cerridwen.compute_moon_data(sun_data["jd"]))
+        buffer += emit_csv(cerridwen.compute_mercury_data(sun_data["jd"]))
+        buffer += emit_csv(cerridwen.compute_venus_data(sun_data["jd"]))
+        buffer += emit_csv(cerridwen.compute_mars_data(sun_data["jd"]))
+        buffer += emit_csv(cerridwen.compute_jupiter_data(sun_data["jd"]))
+        buffer += emit_csv(cerridwen.compute_saturn_data(sun_data["jd"]))
+        buffer += emit_csv(cerridwen.compute_uranus_data(sun_data["jd"]))
+        buffer += emit_csv(cerridwen.compute_neptune_data(sun_data["jd"]))
+        buffer += emit_csv(cerridwen.compute_pluto_data(sun_data["jd"]),False)
+        buffer += "\n"
+        file.write(buffer);
+        print(buffer, end="")
 
 
 if __name__ == '__main__':
